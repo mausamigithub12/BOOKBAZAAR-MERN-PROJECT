@@ -37,7 +37,7 @@ function Navbar() {
             <input
               type="text"
               placeholder="search here"
-              className="bg-tertary w-full  py-1 md:px-8 px-7 rounded-md outline-none"
+              className="bg-tertiary w-full  py-1 md:px-8 px-7 rounded-md outline-none"
             />
           </div>
         </div>

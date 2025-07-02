@@ -8,7 +8,7 @@ function BANNER() {
     >
       {/* Text section */}
       <div className="md:w-1/2 w-full flex items-center md:justify-end">
-        <img src={bannerImg} alt="" />
+        <img src={bannerImg} alt="" className=" h-96  mr-16"/>
       </div>
 
       {/* Img section  */}
