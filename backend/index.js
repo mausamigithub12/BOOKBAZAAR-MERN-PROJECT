@@ -1,11 +1,28 @@
-const express = require('express')   //require is a built-in Node.js function used to import external modules.Import the Express module and store it in the express variable.
-const app = express()              // Call the express function to create an app instance
-const port = process.env. port || 5000;  // Use the system's port if available (like in deployment), otherwise use 5000 for local development
+const express = require("express");
+const app = express();
 
-app.get('/', (req, res) => {  //app: Your Express app instance. get(...): A method to define a GET route. '/': The URL path for this route. '/' means the root of the website. (req, res) => { ... }: This is a callback function (arrow function) that runs when a user makes a GET request to '/'.
-  res.send('Hello World!')     // Send "Hello World!" as the response
-})   
+const mongoose = require("mongoose");
 
-app.listen(port, () => {          // app.listen(...): Start the Express server.
-  console.log(`Example app listening on port ${port}`)
-})
+const port = process.env.PORT || 5000;
+
+require('dotenv').config()
+
+
+async function main() {
+  await mongoose.connect(
+   process.env.DB_URL
+  );
+  app.get("/", (req, res) => {
+    res.send(" Book Bazar server is live and running fine");
+  });
+}
+
+main()
+  .then(() => console.log("Mongodb connect successfully!"))
+  .catch((err) => console.log(err));
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
+
+//fqZYpfLNq0FoiYll
