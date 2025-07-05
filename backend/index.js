@@ -10,7 +10,7 @@ require('dotenv').config()
 
 async function main() {
   await mongoose.connect(
-   process.env.DB_URL
+   process.env.MONGO_URI
   );
   app.get("/", (req, res) => {
     res.send(" Book Bazar server is live and running fine");
