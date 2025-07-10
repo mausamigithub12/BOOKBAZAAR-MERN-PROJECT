@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import BookCard from "../books/BookCard";
-
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -12,6 +10,8 @@ import { Pagination, Navigation  } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import 'swiper/css/navigation';
+import BookCard from "../books/BookCard";
+import { useFetchAllBooksQuery } from "../../redux/features/books/booksApi";
 
 const categories = [
   "Choose a genre",
@@ -22,14 +22,15 @@ const categories = [
 ];
 
 function TopSeller() {
-  const [books, setBooks] = useState([]);
+  // const [books, setBooks] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("choose a genre");
 
-  useEffect(() => {
-    fetch("books.json")
-      .then((res) => res.json())
-      .then((data) => setBooks(data));
-  }, []);
+ const {data:books = [], isLoading, isError, error} =    useFetchAllBooksQuery();      
+ console.log(books)
+
+  //  if (isLoading) return <div>Loading books...</div>;
+  // if (isError) return <div>Error loading books: {error.message}</div>;
+ 
 
   const filteredBooks =
     selectedCategory === "choose a genre"
@@ -37,10 +38,10 @@ function TopSeller() {
       : books.filter(
           (book) => book.category === selectedCategory.toLowerCase()
         );
-  console.log(filteredBooks);
+  // console.log(filteredBooks);
   return (
     <>
-      <div className=" py-10">
+      <div className=" py-10 px-10">
         <h2 className=" text-3xl font-semibold mb-6">Top Sellers</h2>
         {/* category filtering */}
         <div className="mb-4 flex items-center">
@@ -87,7 +88,7 @@ function TopSeller() {
         >
           {
           
-          filteredBooks.length >0 && filteredBooks.map((book, index) => (
+                   filteredBooks.length > 0 && filteredBooks.map((book, index) => (
             <SwiperSlide key={index}>
               <BookCard key={index} book={book} />
             </SwiperSlide>
@@ -99,3 +100,9 @@ function TopSeller() {
 }
 
 export default TopSeller;
+
+
+
+
+
+

@@ -1,18 +1,20 @@
 import React from "react";
 import bannerImg from "../../assets/banner.png";
+import backgroundImage from "../../assets/backgroundImg.jpg"
 
 function BANNER() {
   return (
     <div 
-    className="flex flex-col md:flex-row-reverse py-16 justify-between items-center gap-12"
+    className="flex flex-col md:flex-row-reverse  justify-between items-center gap-12 h-screen bg-cover bg-center bg-no-repeat  "
+     style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       {/* Text section */}
       <div className="md:w-1/2 w-full flex items-center md:justify-end">
-        <img src={bannerImg} alt="" className=" h-96  mr-16"/>
+        {/* <img src={bannerImg} alt="" className=" h-96  mr-16"/> */}
       </div>
 
       {/* Img section  */}
-      <div className="md:w-1/2 w-full">
+      <div className="md:w-1/2 w-full text-white px-10">
         <h1 className="md:text-5xl text-2xl font-medium mb-7">
           New Releases This Week
         </h1>
