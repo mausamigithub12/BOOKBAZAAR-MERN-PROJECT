@@ -13,6 +13,8 @@
     "@reduxjs/toolkit": "^2.8.2",
     "@tailwindcss/postcss": "^4.1.10",
     "@tailwindcss/vite": "^4.1.10",
+    "cors": "^2.8.5",
+    "firebase": "^11.10.0",
     "framer-motion": "^12.23.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

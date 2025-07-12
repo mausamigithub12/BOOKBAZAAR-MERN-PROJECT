@@ -10,7 +10,7 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:5173/"],
+    origin: ["http://localhost:5173"],
     credentials: true,
   })
 );
@@ -19,12 +19,15 @@ app.use(
 const bookRoutes = require("./src/books/book.route.js");
 app.use("/api/books", bookRoutes);
 
+const orderRoutes= require("./src/orders/order.route.js");
+app.use("/api/orders", orderRoutes);
+
 app.get("/", (req, res) => {
   res.send(" Book Bazar server is live and running fine");
 });
 
 async function main() {
-  await mongoose.connect(process.env.MONGO_URI);
+  await mongoose.connect(process.env.DB_URL);
 }
 
 main()
