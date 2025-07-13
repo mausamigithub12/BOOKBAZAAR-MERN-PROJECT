@@ -60,7 +60,7 @@ const signInWithGoogle =async()=>{
   const value = {
     currentUser,
     registerUser,
-    loginUser, signInWithGoogle ,logout
+    loginUser, signInWithGoogle ,logout,loading
   };
 
   return (
