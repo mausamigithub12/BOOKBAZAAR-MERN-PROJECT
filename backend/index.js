@@ -25,6 +25,9 @@ app.use("/api/orders", orderRoutes);
 const userRoutes =require("./src/users/user.route.js")
 app.use("/api/auth", userRoutes);
 
+const adminRoutes = require("./src/stats/admin.stats.js")
+app.use("/api/admin", adminRoutes);
+
 app.get("/", (req, res) => {
   res.send(" Book Bazar server is live and running fine");
 });
