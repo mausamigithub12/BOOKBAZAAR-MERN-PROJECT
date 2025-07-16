@@ -34,6 +34,7 @@ app.get("/", (req, res) => {
 
 async function main() {
   await mongoose.connect(process.env.DB_URL);
+  // await mongoose.connect(process.env.MONGO_URI);
 }
 
 main()
