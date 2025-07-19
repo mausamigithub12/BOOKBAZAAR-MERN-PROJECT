@@ -36,13 +36,13 @@ const {
     deleteABook
 } = require('./book.controller');
 
-const verifyAdminToken = require('../middleware/verifyAdminToken');
+// const verifyAdminToken = require('../middleware/verifyAdminToken');
 
-router.post("/create-book", verifyAdminToken, postABook); // 🔒 protected
+router.post("/create-book",  postABook); // 🔒 protected
 
 router.get("/", getAllBooks); // public
 router.get("/:id",  getSingleBook);
-router.put("/edit/:id", verifyAdminToken, updatedBook);
-router.delete("/:id", verifyAdminToken, deleteABook);
+router.put("/edit/:id",  updatedBook);
+router.delete("/:id",  deleteABook);
 
 module.exports = router;

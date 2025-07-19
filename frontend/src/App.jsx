@@ -4,13 +4,15 @@ import { Outlet } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import TopSellers from './pages/home/TopSeller'
-import { AuthProvide } from './context/AuthContext'
+import {  AuthProvider } from './context/AuthContext'
+// import { AdminProvider } from './context/AdminContext'
 
 function App() {
 
   return (
 <>
- <AuthProvide>
+ <AuthProvider>
+  {/* <AdminProvider> */}
   <Navbar/>
   <main className='min-h-screen max-w-screen-2xl mx-auto 
   '>
@@ -18,7 +20,8 @@ function App() {
 
   </main>
   <Footer/>
-  </AuthProvide>
+  {/* </AdminProvider> */}
+  </AuthProvider>
 </>
   )
 }

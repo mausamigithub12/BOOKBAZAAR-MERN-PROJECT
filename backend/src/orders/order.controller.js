@@ -26,7 +26,21 @@ const getOrderByEmail = async (req, res) => {
   }
 }
 
+// Add this new function for eSewa payment success
+const completeEsewaOrder = async (req, res) => {
+  try {
+    const orderData = req.body;
+    const newOrder = new Order(orderData);
+    const savedOrder = await newOrder.save();
+    res.status(200).json(savedOrder);
+  } catch (error) {
+    console.error("Error completing eSewa order", error);
+    res.status(500).json({ message: "Failed to complete order" });
+  }
+};
+
 module.exports = {
   createAOrder,
-  getOrderByEmail
+  getOrderByEmail,  completeEsewaOrder
+
 };

@@ -131,7 +131,7 @@ const UpdateBook = () => {
     try {
       await updateBook({ id, ...updatedData }).unwrap(); // ✅ Correct spread
       Swal.fire('Updated!', 'Book updated successfully.', 'success');
-      navigate('/'); // ✅ Go to Manage Books
+      navigate('/'); 
     } catch (err) {
       console.error("Update failed:", err);
       Swal.fire('Error', 'Failed to update book.', 'error');
