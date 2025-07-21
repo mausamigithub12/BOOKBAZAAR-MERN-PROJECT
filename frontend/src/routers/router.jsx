@@ -26,8 +26,12 @@ import UserDashboard from "../pages/dashboard/users/UserDashboard";
 import LoginChoice from "../components/LoginChoice";
 import UserLogin from "../components/UserLogin";
 import PasswordInput from "../pages/PasswordInput";
-import Success from "../pages/Success";
-import Failure from "../pages/Failure";
+// import OrderSuccessPage from "../pages/OrderSuccessPage";
+// import PaymentFailedPage from "../pages/PaymentFailedPage";
+import Success from "../components/Success";
+import Failure from "../components/Failure";
+import PaymentForm from "../components/PaymentForm";
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -45,19 +49,22 @@ const router = createBrowserRouter(
         />
 
 
+
         <Route path="/password" element={<PasswordInput />} />
+        {/* <Route path="/order-success/:id" element={<OrderSuccessPage/>} /> */}
+        {/* <Route path="/payment-failed" element={<PaymentFailedPage />} /> */}
         <Route path="/login" element={<LoginChoice />} />
 <Route path="/login/user" element={<UserLogin />} />
 {/* <Route path="/login/admin" element={<AdminLogin />} /> */}
 
         <Route path="/about" element={<div>About</div>} />
-        {/* <Route path="/login" element={<Login />} /> */}
+       
         <Route path="/register" element={<Register />} />
         <Route path="/cart" element={<CartPage />} />
 
-        <Route path="/payment-success" element={<Success />} />
-<Route path="/payment-failure" element={<Failure />} />
-        {/* <Route path="/books/:id" element={<SingleBook/>}/> */}
+      <Route path='/payment' element={<PaymentForm/>}/>
+    <Route path='/payment-success' element={<Success/>}/>
+    <Route path='/payment-failure' element={<Failure/>}/>
   
         <Route
           path="/checkout"
