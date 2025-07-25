@@ -1,6 +1,197 @@
  
 
 
+// // import { useEffect, useState } from "react";
+// // import { useLocation, useNavigate } from "react-router-dom";
+// // import { base64Decode } from "esewajs";
+// // import axios from "axios";
+
+// // const Success = () => {
+// //   const [isSuccess, setIsSuccess] = useState(false);
+// //   const [isLoading, setIsLoading] = useState(true);
+// //   const navigate = useNavigate();
+// //   const location = useLocation();
+
+// //   const queryParams = new URLSearchParams(location.search);
+// //   const token = queryParams.get("data");
+// //   const decoded = base64Decode(token);
+
+// //   const verifyPaymentAndUpdateStatus = async () => {
+// //     try {
+// //       const response = await axios.post("http://localhost:5000/payment-status", {
+// //         product_id: decoded.transaction_uuid,
+// //       });
+
+// //       if (response.status === 200) {
+// //         // Get pending order from localStorage
+// //         const orderData = JSON.parse(localStorage.getItem("pendingOrder"));
+// //         if (orderData) {
+// //           await axios.post("http://localhost:5000/api/orders/esewa", orderData);
+// //           localStorage.removeItem("pendingOrder");
+// //         }
+
+// //         setIsSuccess(true);
+// //       }
+// //     } catch (error) {
+// //       console.error("Error verifying payment:", error);
+// //     } finally {
+// //       setIsLoading(false);
+// //     }
+// //   };
+
+// //   useEffect(() => {
+// //     verifyPaymentAndUpdateStatus();
+// //   }, []);
+
+// //   if (isLoading) return <p>Loading...</p>;
+
+// //   if (!isSuccess) {
+// //     return (
+// //       <div>
+// //         <h1>Oops! Something went wrong.</h1>
+// //         <button onClick={() => navigate("/")}>Go to Homepage</button>
+// //       </div>
+// //     );
+// //   }
+
+// //   return (
+// //     <div>
+// //       <h1>Payment Successful!</h1>
+// //       <p>Your order has been placed and paid successfully.</p>
+// //       <button onClick={() => navigate("/orders")}>Go to Order Page</button>
+// //     </div>
+// //   );
+// // };
+
+// // export default Success;
+
+
+
+// // import { useEffect, useState } from "react";
+// // import { useLocation, useNavigate } from "react-router-dom";
+// // import { base64Decode } from "esewajs";
+// // import axios from "axios";
+
+// // const Success = () => {
+// //   const [isSuccess, setIsSuccess] = useState(false);
+// //   const [isLoading, setIsLoading] = useState(true);
+// //   const [error, setError] = useState(null);
+// //   const navigate = useNavigate();
+// //   const location = useLocation();
+
+// //   const queryParams = new URLSearchParams(location.search);
+// //   const token = queryParams.get("data");
+  
+// //   const verifyPaymentAndUpdateStatus = async () => {
+// //     try {
+// //       // 1. Decode the token
+// //       const decoded = base64Decode(token);
+// //       console.log("Decoded token:", decoded);
+
+// //       // 2. Verify payment with eSewa
+// //       const paymentResponse = await axios.post("http://localhost:5000/payment-status", {
+// //         product_id: decoded.transaction_uuid,
+// //       });
+// //       console.log("Payment verification response:", paymentResponse.data);
+
+// //       if (paymentResponse.status === 200) {
+// //         // 3. Get pending order from localStorage
+// //         const orderData = JSON.parse(localStorage.getItem("pendingOrder"));
+// //         console.log("Order data from localStorage:", orderData);
+
+// //         if (!orderData) {
+// //           throw new Error("Order data not found in localStorage");
+// //         }
+
+// //         // 4. Create the order with payment status COMPLETE
+// //         const orderResponse = await axios.post("http://localhost:5000/api/orders/esewa", {
+// //           ...orderData,
+// //           productId: decoded.transaction_uuid, // Add the transaction ID
+// //           paymentStatus: "COMPLETE"
+// //         });
+// //         console.log("Order creation response:", orderResponse.data);
+
+// //         localStorage.removeItem("pendingOrder");
+// //         setIsSuccess(true);
+// //       }
+// //     } catch (error) {
+// //       console.error("Error in payment verification:", error.response?.data || error.message);
+// //       setError(error.response?.data?.message || error.message);
+// //     } finally {
+// //       setIsLoading(false);
+// //     }
+// //   };
+
+// //   useEffect(() => {
+// //     verifyPaymentAndUpdateStatus();
+// //   }, []);
+
+// //   if (isLoading) {
+// //     return (
+// //       <div className="text-center p-8">
+// //         <p>Verifying your payment...</p>
+// //         <p>Please wait while we process your order.</p>
+// //       </div>
+// //     );
+// //   }
+
+// //   if (error) {
+// //     return (
+// //       <div className="max-w-md mx-auto p-6 bg-white rounded shadow-md text-center">
+// //         <h1 className="text-2xl font-bold text-red-600 mb-4">Payment Processing Error</h1>
+// //         <p className="mb-4 text-gray-700">{error}</p>
+// //         <div className="space-y-2">
+// //           <button
+// //             onClick={() => navigate("/orders")}
+// //             className="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+// //           >
+// //             Check Your Orders
+// //           </button>
+// //           <button
+// //             onClick={() => navigate("/")}
+// //             className="w-full bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+// //           >
+// //             Go to Homepage
+// //           </button>
+// //         </div>
+// //       </div>
+// //     );
+// //   }
+
+// //   if (!isSuccess) {
+// //     return (
+// //       <div className="max-w-md mx-auto p-6 bg-white rounded shadow-md text-center">
+// //         <h1 className="text-2xl font-bold text-yellow-600 mb-4">Payment Status Unknown</h1>
+// //         <p className="mb-4">We couldn't verify your payment status.</p>
+// //         <p className="mb-4">Please check your orders or contact support.</p>
+// //         <button
+// //           onClick={() => navigate("/orders")}
+// //           className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+// //         >
+// //           Check Your Orders
+// //         </button>
+// //       </div>
+// //     );
+// //   }
+
+// //   return (
+// //     <div className="max-w-md mx-auto p-6 bg-white rounded shadow-md text-center">
+// //       <h1 className="text-2xl font-bold text-green-600 mb-4">Payment Successful!</h1>
+// //       <p className="mb-4">Your order has been placed successfully.</p>
+// //       <button
+// //         onClick={() => navigate("/orders")}
+// //         className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+// //       >
+// //         View Your Orders
+// //       </button>
+// //     </div>
+// //   );
+// // };
+
+// // export default Success; this is working
+
+
+
 // import { useEffect, useState } from "react";
 // import { useLocation, useNavigate } from "react-router-dom";
 // import { base64Decode } from "esewajs";
@@ -9,31 +200,43 @@
 // const Success = () => {
 //   const [isSuccess, setIsSuccess] = useState(false);
 //   const [isLoading, setIsLoading] = useState(true);
+//   const [error, setError] = useState(null);
+//   const [orderId, setOrderId] = useState(null);
 //   const navigate = useNavigate();
 //   const location = useLocation();
 
 //   const queryParams = new URLSearchParams(location.search);
 //   const token = queryParams.get("data");
-//   const decoded = base64Decode(token);
-
+  
 //   const verifyPaymentAndUpdateStatus = async () => {
 //     try {
-//       const response = await axios.post("http://localhost:5000/payment-status", {
+//       const decoded = base64Decode(token);
+//       console.log("Decoded token:", decoded);
+
+//       const paymentResponse = await axios.post("http://localhost:5000/payment-status", {
 //         product_id: decoded.transaction_uuid,
 //       });
 
-//       if (response.status === 200) {
-//         // Get pending order from localStorage
+//       if (paymentResponse.status === 200) {
 //         const orderData = JSON.parse(localStorage.getItem("pendingOrder"));
-//         if (orderData) {
-//           await axios.post("http://localhost:5000/api/orders/esewa", orderData);
-//           localStorage.removeItem("pendingOrder");
+
+//         if (!orderData) {
+//           throw new Error("Order data not found in localStorage");
 //         }
 
+//         const orderResponse = await axios.post("http://localhost:5000/api/orders/esewa", {
+//           ...orderData,
+//           productId: decoded.transaction_uuid,
+//           paymentStatus: "COMPLETE"
+//         });
+
+//         localStorage.removeItem("pendingOrder");
+//         setOrderId(orderResponse.data._id);
 //         setIsSuccess(true);
 //       }
 //     } catch (error) {
-//       console.error("Error verifying payment:", error);
+//       console.error("Error in payment verification:", error);
+//       setError(error.response?.data?.message || error.message);
 //     } finally {
 //       setIsLoading(false);
 //     }
@@ -43,22 +246,65 @@
 //     verifyPaymentAndUpdateStatus();
 //   }, []);
 
-//   if (isLoading) return <p>Loading...</p>;
+//   if (isLoading) {
+//     return (
+//       <div className="text-center p-8">
+//         <p>Verifying your payment...</p>
+//         <p>Please wait while we process your order.</p>
+//       </div>
+//     );
+//   }
+
+//   if (error) {
+//     return (
+//       <div className="max-w-md mx-auto p-6 bg-white rounded shadow-md text-center">
+//         <h1 className="text-2xl font-bold text-red-600 mb-4">Payment Processing Error</h1>
+//         <p className="mb-4 text-gray-700">{error}</p>
+//         <div className="space-y-2">
+//           <button
+//             onClick={() => navigate("/orders")}
+//             className="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+//           >
+//             Check Your Orders
+//           </button>
+//           <button
+//             onClick={() => navigate("/")}
+//             className="w-full bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+//           >
+//             Go to Homepage
+//           </button>
+//         </div>
+//       </div>
+//     );
+//   }
 
 //   if (!isSuccess) {
 //     return (
-//       <div>
-//         <h1>Oops! Something went wrong.</h1>
-//         <button onClick={() => navigate("/")}>Go to Homepage</button>
+//       <div className="max-w-md mx-auto p-6 bg-white rounded shadow-md text-center">
+//         <h1 className="text-2xl font-bold text-yellow-600 mb-4">Payment Status Unknown</h1>
+//         <p className="mb-4">We couldn't verify your payment status.</p>
+//         <p className="mb-4">Please check your orders or contact support.</p>
+//         <button
+//           onClick={() => navigate("/orders")}
+//           className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+//         >
+//           Check Your Orders
+//         </button>
 //       </div>
 //     );
 //   }
 
 //   return (
-//     <div>
-//       <h1>Payment Successful!</h1>
-//       <p>Your order has been placed and paid successfully.</p>
-//       <button onClick={() => navigate("/orders")}>Go to Order Page</button>
+//     <div className="max-w-md mx-auto p-6 bg-white rounded shadow-md text-center">
+//       <h1 className="text-2xl font-bold text-green-600 mb-4">Payment Successful!</h1>
+//       <p className="mb-2">Your order ID: {orderId}</p>
+//       <p className="mb-4">Your order has been placed successfully.</p>
+//       <button
+//         onClick={() => navigate("/user-dashboard/orders/")}
+//         className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+//       >
+//         View Your Orders
+//       </button>
 //     </div>
 //   );
 // };
@@ -76,6 +322,7 @@ const Success = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [orderId, setOrderId] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -84,38 +331,37 @@ const Success = () => {
   
   const verifyPaymentAndUpdateStatus = async () => {
     try {
-      // 1. Decode the token
       const decoded = base64Decode(token);
       console.log("Decoded token:", decoded);
 
-      // 2. Verify payment with eSewa
       const paymentResponse = await axios.post("http://localhost:5000/payment-status", {
         product_id: decoded.transaction_uuid,
       });
-      console.log("Payment verification response:", paymentResponse.data);
 
       if (paymentResponse.status === 200) {
-        // 3. Get pending order from localStorage
         const orderData = JSON.parse(localStorage.getItem("pendingOrder"));
-        console.log("Order data from localStorage:", orderData);
 
         if (!orderData) {
           throw new Error("Order data not found in localStorage");
         }
 
-        // 4. Create the order with payment status COMPLETE
         const orderResponse = await axios.post("http://localhost:5000/api/orders/esewa", {
           ...orderData,
-          productId: decoded.transaction_uuid, // Add the transaction ID
+          productId: decoded.transaction_uuid,
           paymentStatus: "COMPLETE"
         });
-        console.log("Order creation response:", orderResponse.data);
 
         localStorage.removeItem("pendingOrder");
+        setOrderId(orderResponse.data._id);
         setIsSuccess(true);
+        
+        // Automatically redirect to order details after 5 seconds
+        setTimeout(() => {
+          navigate(`/user-dashboard/orders/${orderResponse.data._id}`);
+        }, 5000);
       }
     } catch (error) {
-      console.error("Error in payment verification:", error.response?.data || error.message);
+      console.error("Error in payment verification:", error);
       setError(error.response?.data?.message || error.message);
     } finally {
       setIsLoading(false);
@@ -128,31 +374,41 @@ const Success = () => {
 
   if (isLoading) {
     return (
-      <div className="text-center p-8">
-        <p>Verifying your payment...</p>
-        <p>Please wait while we process your order.</p>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-4">
+        <div className="max-w-md w-full bg-white rounded-lg shadow-md p-8 text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500 mx-auto mb-4"></div>
+          <h2 className="text-xl font-semibold text-gray-800 mb-2">Verifying Your Payment</h2>
+          <p className="text-gray-600">Please wait while we process your order</p>
+        </div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="max-w-md mx-auto p-6 bg-white rounded shadow-md text-center">
-        <h1 className="text-2xl font-bold text-red-600 mb-4">Payment Processing Error</h1>
-        <p className="mb-4 text-gray-700">{error}</p>
-        <div className="space-y-2">
-          <button
-            onClick={() => navigate("/orders")}
-            className="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-          >
-            Check Your Orders
-          </button>
-          <button
-            onClick={() => navigate("/")}
-            className="w-full bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
-          >
-            Go to Homepage
-          </button>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-4">
+        <div className="max-w-md w-full bg-white rounded-lg shadow-md p-8 text-center">
+          <div className="mx-auto mb-4 text-red-500">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h1 className="text-2xl font-bold text-red-600 mb-4">Payment Processing Error</h1>
+          <p className="mb-6 text-gray-700">{error}</p>
+          <div className="space-y-3">
+            <button
+              onClick={() => navigate(`/user-dashboard/orders/${orderId}`)}
+              className="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"
+            >
+              Check Your Orders
+            </button>
+            <button
+              onClick={() => navigate("/")}
+              className="w-full bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300 transition-colors"
+            >
+              Go to Homepage
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -160,30 +416,51 @@ const Success = () => {
 
   if (!isSuccess) {
     return (
-      <div className="max-w-md mx-auto p-6 bg-white rounded shadow-md text-center">
-        <h1 className="text-2xl font-bold text-yellow-600 mb-4">Payment Status Unknown</h1>
-        <p className="mb-4">We couldn't verify your payment status.</p>
-        <p className="mb-4">Please check your orders or contact support.</p>
-        <button
-          onClick={() => navigate("/orders")}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-        >
-          Check Your Orders
-        </button>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-4">
+        <div className="max-w-md w-full bg-white rounded-lg shadow-md p-8 text-center">
+          <div className="mx-auto mb-4 text-yellow-500">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </div>
+          <h1 className="text-2xl font-bold text-yellow-600 mb-4">Payment Status Unknown</h1>
+          <p className="mb-4 text-gray-600">We couldn't verify your payment status.</p>
+          <p className="mb-6 text-gray-600">Please check your orders or contact support.</p>
+          <button
+            onClick={() => navigate(`/user-dashboard/orders/${orderId}`)}
+            className="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"
+          >
+            Check Your Orders
+          </button>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded shadow-md text-center">
-      <h1 className="text-2xl font-bold text-green-600 mb-4">Payment Successful!</h1>
-      <p className="mb-4">Your order has been placed successfully.</p>
-      <button
-        onClick={() => navigate("/orders")}
-        className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-      >
-        View Your Orders
-      </button>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-4">
+      <div className="max-w-md w-full bg-white rounded-lg shadow-md p-8 text-center">
+        <div className="mx-auto mb-4 text-green-500">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h1 className="text-2xl font-bold text-green-600 mb-4">Payment Successful!</h1>
+        <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+          <p className="font-medium text-gray-700">Order ID:</p>
+          <p className="text-lg font-mono text-gray-900">{orderId}</p>
+        </div>
+        <p className="mb-6 text-gray-600">You'll be redirected to your order details shortly...</p>
+        <div className="w-full bg-gray-200 rounded-full h-2.5 mb-6">
+          <div className="bg-green-500 h-2.5 rounded-full animate-pulse" style={{width: '100%'}}></div>
+        </div>
+        <button
+          onClick={() => navigate(`/user-dashboard/orders/${orderId}`)}
+          className="w-full bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors"
+        >
+          View Order Details Now
+        </button>
+      </div>
     </div>
   );
 };

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useAuth } from "../context/AuthContext";
+import  {useAuth}  from "../context/AuthContext";
 import { jwtDecode } from "jwt-decode";
 
 import { HiOutlineHeart, HiOutlineShoppingCart } from "react-icons/hi2";
@@ -10,19 +10,24 @@ import { IoSearchOutline } from "react-icons/io5";
 import Img from "../assets/navLogo.png";
 import backgroundImage from "../assets/backgroundImg.jpg";
 
+
+
+
 const userNavigation = [
+  { name: "My Profile", href: "/profile" },
   { name: "Dashboard", href: "/user-dashboard" },
-  { name: "Orders", href: "/orders" },
-  { name: "Cart", href: "/cart" },
-  { name: "Checkout", href: "/checkout" },
+
 ];
 
 const adminNavigation = [
+  // { name: "My Profile", href: "/profile" },
   { name: "Dashboard", href: "/dashboard" },
   { name: "View Orders", href: "/orders" },
-  { name: "Manage Books", href: "/manage-books" },
-  { name: "Add Book", href: "/add-book" },
+  { name: "Manage Books", href: "/dashboard/manage-books" },
+  // { name: "Manage u", href: "/manage-" },
+  { name: "Add Book", href: "/dashboard/add-new-book" },
 ];
+// ];
 
 const Navbar = () => {
   const [query, setQuery] = useState("");
