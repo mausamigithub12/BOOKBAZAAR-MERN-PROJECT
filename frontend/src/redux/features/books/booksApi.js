@@ -51,6 +51,38 @@ const booksApi = createApi({
       }),
       invalidatesTags: ['Books'],
     }),
+
+
+
+addReview: builder.mutation({
+      query: ({ id, ...reviewData }) => ({
+        url: `/${id}/reviews`,
+        method: 'POST',
+        body: reviewData,
+      }),
+      invalidatesTags: ['Books'],
+    }),
+
+    likeBook: builder.mutation({
+      query: ({ id, userId }) => ({
+        url: `/${id}/like`,
+        method: 'POST',
+        body: { userId },
+      }),
+      invalidatesTags: ['Books'],
+    }),
+
+    trackBookView: builder.mutation({
+      query: (id) => ({
+        url: `/${id}/view`,
+        method: 'POST',
+      }),
+    }),
+
+    getRecommendedBooks: builder.query({
+      query: ({ id, category }) => `/${id}/recommendations?category=${category}`,
+      providesTags: ['Books'],
+    }),
   }),
 });
 
@@ -60,6 +92,35 @@ export const {
   useAddBookMutation,
   useUpdateBookMutation,
   useDeleteBookMutation,
+  useAddReviewMutation,
+  useLikeBookMutation,
+  useTrackBookViewMutation,
+  useGetRecommendedBooksQuery,
 } = booksApi;
 
 export default booksApi;
+    
+    
+    
+  
+
+
+
+
+
+//   }),
+// });
+
+// export const {
+//   useFetchAllBooksQuery,
+//   useFetchBookByIdQuery,
+//   useAddBookMutation,
+//   useUpdateBookMutation,
+//   useDeleteBookMutation,
+
+
+ 
+
+// } = booksApi;
+
+// export default booksApi;

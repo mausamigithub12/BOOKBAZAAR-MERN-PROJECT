@@ -9,6 +9,7 @@ import ordersApi from './features/orders/ordersApi';
 import { adminStatsApi } from './adminStatsApi';
 import { usersApi } from './usersApi';
 
+
 export const store = configureStore({
   reducer: {
     cart: cartReducer,
@@ -17,6 +18,11 @@ export const store = configureStore({
     [adminStatsApi.reducerPath]: adminStatsApi.reducer,
     [usersApi.reducerPath]: usersApi.reducer,
   },
+
+
+
+
+
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
       booksApi.middleware,

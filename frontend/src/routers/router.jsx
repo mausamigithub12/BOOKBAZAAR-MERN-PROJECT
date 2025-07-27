@@ -44,6 +44,14 @@ import UsersList from "../pages/dashboard/users/UsersList";
 import PaymentReports from "../pages/dashboard/payments/PaymentReports";
 import AdminUsers from "../pages/dashboard/orders/AdminUsers";
 
+
+import { getAnonymousUserId } from '../utils/userTracking';
+
+if (!localStorage.getItem('uid')) {
+  getAnonymousUserId();
+}
+
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -189,5 +197,6 @@ const router = createBrowserRouter(
 );
 
 export default router;
+
 
 
