@@ -20,14 +20,11 @@ const userNavigation = [
 ];
 
 const adminNavigation = [
-  // { name: "My Profile", href: "/profile" },
   { name: "Dashboard", href: "/dashboard" },
   { name: "View Orders", href: "/orders" },
   { name: "Manage Books", href: "/dashboard/manage-books" },
-  // { name: "Manage u", href: "/manage-" },
   { name: "Add Book", href: "/dashboard/add-new-book" },
 ];
-// ];
 
 const Navbar = () => {
   const [query, setQuery] = useState("");

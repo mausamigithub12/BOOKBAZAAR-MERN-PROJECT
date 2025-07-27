@@ -14,7 +14,7 @@ async function main() {
 
   const newAdmin = new User({
     email: "admin@gmail.com",
-    password: "1234abc", // This will be hashed via pre-save hook
+    password: "1234abc", 
     role: "admin"
   });
 

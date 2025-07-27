@@ -8,7 +8,7 @@ const { getAllUsers ,deleteUser, } = require("./user.controller"); // ✅ Import
 const router =  express.Router();
 
 const JWT_SECRET = process.env.JWT_SECRET_KEY
-// yo chai admindashlolagitry
+// yo chai admindashboard
 router.get('/users', verifyAdminToken, getAllUsers);
 router.delete('/users/:id', verifyAdminToken, deleteUser);
 

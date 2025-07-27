@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useParams } from 'react-router-dom';
-import api from '../utils/api'; // Use your configured axios instance
+import api from '../utils/api'; 
 import { toast } from 'react-toastify';
 
 const ReviewForm = ({ onReviewSubmit }) => {

@@ -16,7 +16,7 @@ const TopSellers = () => {
 
   console.log("API data:", data);
 
-  // Adjust this based on structure:
+  // Adjusting it based on structure:
   const books = Array.isArray(data)
     ? data
     : Array.isArray(data?.books)

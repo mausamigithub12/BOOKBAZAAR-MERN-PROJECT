@@ -93,10 +93,6 @@ const monthlySales = Object.entries(salesByMonth)
   .sort((a, b) => new Date(a.month) - new Date(b.month)); // optional: sort by date
 
 
-
-
-
-
       setStats({
         totalBooks: allBooks.length,
         totalOrders: allOrders.length,
@@ -127,11 +123,7 @@ const monthlySales = Object.entries(salesByMonth)
         <StatsCard icon="💰" title="Total Earnings" value={`Rs. ${stats.totalEarnings.toLocaleString()}`} color="purple" description="From completed orders" />
       </div>
 
-        
-
-
-
-
+      
 {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8"> */}
         <div className="bg-white p-6 rounded-lg shadow">
           <h2 className="text-xl font-semibold mb-4">Sales Analytics</h2>

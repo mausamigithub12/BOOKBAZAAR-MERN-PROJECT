@@ -1,18 +1,18 @@
-// frontend/src/components/UserDetailsModal.jsx
+
 import React from 'react';
 import { FiX, FiUser, FiMail, FiPhone, FiMapPin, FiCalendar, FiClock } from 'react-icons/fi';
 
 const UserDetailModal = ({ user, onClose }) => {
-  // Safe date formatting function
+  
   const formatDate = (date) => {
     if (!date) return 'Not available';
     
     try {
-      // Check if it's a Firestore Timestamp
+      
       if (typeof date?.toDate === 'function') {
         return date.toDate().toLocaleString();
       }
-      // Check if it's already a Date object or can be converted
+      
       const jsDate = new Date(date);
       if (!isNaN(jsDate.getTime())) {
         return jsDate.toLocaleString();

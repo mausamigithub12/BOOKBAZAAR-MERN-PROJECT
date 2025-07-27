@@ -21,14 +21,14 @@ const AdminLogin = () => {
 
   const navigate = useNavigate();
 
-  // ✅ Redirect if already logged in as admin
+  // Redirect if already logged in as admin
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       try {
         const decoded = jwtDecode(token);
         if (decoded?.role === "admin") {
-          navigate("/"); // Redirect to home or admin dashboard
+          navigate("/"); 
         }
       } catch (err) {
         localStorage.removeItem("token");
@@ -46,13 +46,13 @@ const AdminLogin = () => {
 
       const auth = response.data;
 
-      // ✅ Make sure the logged-in user is an admin
+      // for sureity the logged-in user is an admin
       if (auth.user?.role !== 'admin') {
         setMessage("You are not authorized as admin.");
         return;
       }
 
-      // ✅ Save token to localStorage
+      //  Save token to localStorage
       if (auth.token) {
         localStorage.setItem('token', auth.token);
 

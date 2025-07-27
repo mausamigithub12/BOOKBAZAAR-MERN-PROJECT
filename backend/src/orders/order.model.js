@@ -1,6 +1,5 @@
 
 
-
 const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
@@ -54,13 +53,13 @@ const orderSchema = new mongoose.Schema({
   timestamps: true,
 });
 
-// Soft delete method
+
 orderSchema.methods.softDelete = function() {
   this.isDeleted = true;
   return this.save();
 };
 
-// Query helper to exclude deleted orders by default
+//  this is the Query helper to exclude deleted orders by default
 orderSchema.pre(/^find/, function(next) {
   this.where({ isDeleted: false });
   next();

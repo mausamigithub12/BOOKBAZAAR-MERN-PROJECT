@@ -1,5 +1,3 @@
-
-
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -8,7 +6,7 @@ import {
 
 import App from "../App";
 import Home from "../pages/home/Home";
-// import Login from "../components/Login";
+
 import Register from "../components/Register";
 import CartPage from "../pages/books/CartPage";
 import CheckoutPage from "../pages/books/CheckoutPage";
@@ -33,8 +31,6 @@ import Failure from "../components/Failure";
 import PaymentForm from "../components/PaymentForm";
 import OrderConfirmation from "../components/OrderConfirmation";
 import UserProfile from "../pages/UserProfile";
-
-
 import DashboardOverview from '../pages/dashboard/users/DashboardOverview';
 import OrderHistory from '../pages/dashboard/users/OrderHistory';
 import PaymentHistory from '../pages/dashboard/users/PaymentHistory';
@@ -50,18 +46,13 @@ import { getAnonymousUserId } from '../utils/userTracking';
 if (!localStorage.getItem('uid')) {
   getAnonymousUserId();
 }
-
-
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      {/* Main layout */}
+     
       <Route path="/" element={<App />}>
         <Route path="/" element={<Home />} />
-       
-
-
-
+      
  
 <Route
   path="/user-dashboard"
@@ -146,48 +137,45 @@ const router = createBrowserRouter(
         <Route
           index
           element={
-            // <AdminRoute>
+           
               <DashboardHome />
-            // </AdminRoute>
+            
           }
         /> 
         <Route
           path="add-book"
           element={
-            // <AdminRoute>
+            
               <AddBook />
-            // </AdminRoute>
+            
           }
         />
         <Route
           path="edit-book/:id"
           element={
-            // <AdminRoute>
+           
               <UpdateBook />
-            // { </AdminRoute> }
+            
           }
         />
         <Route
           path="manage-books"
           element={
-            // <AdminRoute>
+           
               <ManageBooks />
-            // </AdminRoute>
+           
           }
         />
 
         <Route path="orders" element={
-          // <AdminRoute>
+         
             <AdminOrders/>}
-          // </AdminRoute>}
+          
            />
-      {/* <Route path="users" element={ */}
      
-        {/* <UsersList/>} */}
-        {/* /> */}
       
       <Route path="payment-reports" element={<AdminRoute><PaymentReports/></AdminRoute>} />
-{/* // In your main router configuration */}
+
 <Route path="/dashboard/users" element={<AdminUsers/>} />
 
 

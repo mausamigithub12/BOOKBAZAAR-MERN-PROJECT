@@ -1,7 +1,7 @@
 
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import getBaseUrl from '../utils/baseURL'; // update path if needed
+import getBaseUrl from '../utils/baseURL'; 
 
 export const usersApi = createApi({
   reducerPath: 'usersApi',
@@ -31,10 +31,6 @@ export const usersApi = createApi({
   }),
 
   
-
-
-
-
 
 });
 

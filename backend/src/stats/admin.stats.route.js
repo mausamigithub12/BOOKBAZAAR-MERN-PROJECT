@@ -10,10 +10,10 @@ const Book = require("../books/book.model");
 const Order = require("../orders/order.model");
 const User = require("../users/user.model");
 
-// Controller logic directly in the route file
+
 router.get("/stats", verifyAdminToken, async (req, res) => {
   try {
-    // Count books, orders, users in parallel
+    // yo Count books, orders, users in parallel
     const [totalBooks, totalOrders, totalUsers] = await Promise.all([
       Book.countDocuments(),
       Order.countDocuments(),

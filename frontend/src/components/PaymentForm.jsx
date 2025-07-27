@@ -1,8 +1,4 @@
 
-
-
-
-
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { generateUniqueId } from 'esewajs';
@@ -28,7 +24,6 @@ const PaymentForm = () => {
         productId: generateUniqueId(),
       });
 
-      // Save order data temporarily to localStorage for success page
       localStorage.setItem('pendingOrder', JSON.stringify(orderData));
 
       window.location.href = response.data.url;

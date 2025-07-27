@@ -1,4 +1,4 @@
-// frontend/src/pages/AdminUsers.jsx
+
 import React, { useState, useEffect } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../../firebase/firebase.config';
@@ -48,8 +48,7 @@ const AdminUsers = () => {
   const handleDelete = async (uid) => {
     if (!window.confirm('Delete this user from Firebase?')) return;
     try {
-      // You'll need to implement your deleteUser function here
-      // await deleteUser(uid);
+      
       toast.success('User deleted');
       setUsers(users.filter(user => user.id !== uid));
     } catch {

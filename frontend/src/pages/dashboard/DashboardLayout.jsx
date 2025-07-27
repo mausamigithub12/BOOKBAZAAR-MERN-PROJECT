@@ -8,7 +8,7 @@ const DashboardLayout = () => {
 
   const handleLogout = () => {
     logout();
-    navigate('/admin'); // Redirect to admin login after logout
+    navigate('/admin'); 
   };
 
   const profileLetter = currentUser?.email?.charAt(0).toUpperCase() || 'A';

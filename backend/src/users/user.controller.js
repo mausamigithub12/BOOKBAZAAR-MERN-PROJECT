@@ -1,11 +1,8 @@
 
 
-
-
-
 const admin = require('../../firebaseAdmin'); // Firebase Admin SDK
 
-// 🚀 DELETE Firebase Auth User
+// DELETE Firebase Auth User
 const deleteUser = async (req, res) => {
   const { id } = req.params;
 

@@ -25,16 +25,16 @@ const PersonalizedRecommendations = ({ likedBooks, allBooks }) => {
     .sort((a, b) => b[1] - a[1])
     .map(([category]) => category);
 
-  // Get recommended books (excluding already liked ones)
+  //  this is for Get recommended books (excluding already liked ones)
   const recommendedBooks = sortedCategories
     .flatMap(category => 
       allBooks
         .filter(book => 
           book.category === category && 
           !likedBooks.includes(book._id)
-        ).slice(0, 5) // Limit per category
+        ).slice(0, 5) 
     )
-    .slice(0, 10); // Total limit
+    .slice(0, 10); 
 
   if (recommendedBooks.length === 0) return null;
 

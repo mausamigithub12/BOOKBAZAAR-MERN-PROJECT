@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -15,9 +14,14 @@ function CheckoutPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
 
+ 
   const totalPrice = cartItems
-    .reduce((acc, item) => acc + item.newPrice, 0)
+    .reduce((acc, item) => acc + (item.newPrice * item.quantity), 0)
     .toFixed(2);
+
+  
+  const totalItems = cartItems
+    .reduce((acc, item) => acc + item.quantity, 0);
 
   const {
     register,
@@ -40,9 +44,13 @@ function CheckoutPage() {
           zipcode: formData.zipcode,
         },
         phone: formData.phone,
-        productIds: cartItems.map((item) => item?._id),
+        productIds: cartItems.map((item) => ({
+          _id: item._id,
+          quantity: item.quantity,
+          price: item.newPrice
+        })),
         totalPrice: totalPrice,
-        totalItems: cartItems.length,
+        totalItems: totalItems,
         paymentMethod: "CASH_ON_DELIVERY",
         paymentStatus: "PENDING"
       };
@@ -74,9 +82,13 @@ function CheckoutPage() {
         zipcode: formData.zipcode,
       },
       phone: formData.phone,
-      productIds: cartItems.map((item) => item?._id),
+      productIds: cartItems.map((item) => ({
+        _id: item._id,
+        quantity: item.quantity,
+        price: item.newPrice
+      })),
       totalPrice: totalPrice,
-      totalItems: cartItems.length,
+      totalItems: totalItems,
       paymentMethod: "ESEWA",
       paymentStatus: "PENDING"
     };
@@ -101,7 +113,7 @@ function CheckoutPage() {
             <h2 className="font-semibold text-xl text-gray-600 mb-2">Checkout</h2>
             <p className="text-gray-500 mb-2">Rs.{totalPrice}</p>
             <p className="text-gray-500 mb-6">
-              Items: {cartItems.length > 0 ? cartItems.length : 0}
+              Items: {totalItems > 0 ? totalItems : 0}
             </p>
 
             <div className="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
@@ -302,8 +314,6 @@ function CheckoutPage() {
 }
 
 export default CheckoutPage;
-
-
 
 
 

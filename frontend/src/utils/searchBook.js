@@ -9,9 +9,9 @@ const linearSearchBook = (books, query) => {
       book?.author?.toLowerCase().includes(q) ||
       book?.category?.toLowerCase().includes(q)
     ) {
-      return book; // Return first matched book
+      return book; 
     }
   }
 
-  return null; // No match
+  return null; 
 };
