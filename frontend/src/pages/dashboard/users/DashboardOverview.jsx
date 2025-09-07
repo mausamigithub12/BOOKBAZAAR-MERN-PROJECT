@@ -1,4 +1,3 @@
-// DashboardOverview.jsx
 import React from 'react';
 import { useGetOrderByEmailQuery } from '../../../redux/features/orders/ordersApi';
 import { useAuth } from '../../../context/AuthContext';
@@ -11,7 +10,6 @@ const DashboardOverview = () => {
     return <div className="text-center p-8">Loading dashboard...</div>;
   }
 
-  // Calculate stats here
   const totalOrders = orders.length;
   const totalSpent = orders
     .filter(order => order.paymentStatus === "COMPLETE")

@@ -1,6 +1,4 @@
 
-
-
 import React, { useEffect, useState } from 'react';
 import { useGetAllOrdersQuery } from '../../redux/features/orders/ordersApi';
 import { useFetchAllBooksQuery } from '../../redux/features/books/booksApi';
@@ -164,4 +162,3 @@ const monthlySales = Object.entries(salesByMonth)
 };
 
 export default DashboardHome;
-

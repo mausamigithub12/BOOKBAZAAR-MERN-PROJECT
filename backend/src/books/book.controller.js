@@ -2,7 +2,6 @@
 
 const Book = require("./book.model");
 
-// Helper function to get user preferences from localStorage
 const getUserPreferences = () => {
   const userId = localStorage.getItem('uid');
   const interactions = JSON.parse(localStorage.getItem('userInteractions') || '{}');
@@ -82,7 +81,7 @@ const likeBook = async (req, res) => {
   }
 };
 
-// Other controller methods remain the same...
+
 const postABook = async (req, res) => {
   try {
     const newBook = await Book({...req.body});

@@ -1,6 +1,4 @@
 
-
-
 import React, { useEffect, useState } from 'react';
 import { useFetchAllBooksQuery } from '../../redux/features/books/booksApi';
 import TopSellers from './TopSeller';

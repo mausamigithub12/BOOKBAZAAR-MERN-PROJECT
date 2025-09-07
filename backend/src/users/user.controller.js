@@ -1,5 +1,4 @@
 
-
 const admin = require('../../firebaseAdmin'); // Firebase Admin SDK
 
 // DELETE Firebase Auth User

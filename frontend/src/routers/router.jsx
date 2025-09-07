@@ -42,6 +42,7 @@ import AdminUsers from "../pages/dashboard/orders/AdminUsers";
 
 
 import { getAnonymousUserId } from '../utils/userTracking';
+import About from "../components/About";
 
 if (!localStorage.getItem('uid')) {
   getAnonymousUserId();
@@ -97,6 +98,7 @@ const router = createBrowserRouter(
        
         <Route path="/login" element={<LoginChoice />} />
 <Route path="/login/user" element={<UserLogin />} />
+        <Route path="/about" element={<About />} />
 
 
         <Route path="/about" element={<div>About</div>} />

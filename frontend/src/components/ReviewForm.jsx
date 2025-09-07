@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
-import { useAuth } from '../context/AuthContext';
-import { useParams } from 'react-router-dom';
-import api from '../utils/api'; 
-import { toast } from 'react-toastify';
+;  
+import React, { useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import api from "../utils/api";
+
 
 const ReviewForm = ({ onReviewSubmit }) => {
   const { id } = useParams();
   const { currentUser } = useAuth();
   const [rating, setRating] = useState(5);
-  const [comment, setComment] = useState('');
+  const [comment, setComment] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!currentUser) {
-      toast.error('Please login to submit a review');
+      toast.error("Please login to submit a review");
       return;
     }
 
@@ -23,18 +25,21 @@ const ReviewForm = ({ onReviewSubmit }) => {
     try {
       const response = await api.post(`/books/${id}/reviews`, {
         userId: currentUser.uid,
-        userName: currentUser.displayName || currentUser.email.split('@')[0] || 'Anonymous',
+        userName:
+          currentUser.displayName ||
+          currentUser.email.split("@")[0] ||
+          "Anonymous",
         rating,
-        comment
+        comment,
       });
 
-      toast.success('Review submitted successfully!');
+      toast.success("Review submitted successfully!");
       onReviewSubmit(response.data.book);
-      setComment('');
+      setComment("");
       setRating(5);
     } catch (error) {
-      console.error('Error submitting review:', error);
-      toast.error(error.response?.data?.message || 'Failed to submit review');
+      console.error("Error submitting review:", error);
+      toast.error(error.response?.data?.message || "Failed to submit review");
     } finally {
       setIsSubmitting(false);
     }
@@ -52,7 +57,9 @@ const ReviewForm = ({ onReviewSubmit }) => {
                 key={star}
                 type="button"
                 onClick={() => setRating(star)}
-                className={`text-2xl ${star <= rating ? 'text-yellow-500' : 'text-gray-300'}`}
+                className={`text-2xl ${
+                  star <= rating ? "text-yellow-500" : "text-gray-300"
+                }`}
                 disabled={isSubmitting}
               >
                 ★
@@ -76,7 +83,7 @@ const ReviewForm = ({ onReviewSubmit }) => {
           className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:bg-blue-400"
           disabled={isSubmitting}
         >
-          {isSubmitting ? 'Submitting...' : 'Submit Review'}
+          {isSubmitting ? "Submitting..." : "Submit Review"}
         </button>
       </form>
     </div>

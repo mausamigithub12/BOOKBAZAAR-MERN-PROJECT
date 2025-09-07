@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 import InputField from './InputField'
 import SelectField from './SelectField'
@@ -48,7 +49,6 @@ const AddBook = () => {
     <div className="max-w-lg   mx-auto md:p-6 p-3 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-bold text-gray-800 mb-4">Add New Book</h2>
 
-      {/* Form starts here */}
       <form onSubmit={handleSubmit(onSubmit)} className=''>
         {/* Reusable Input Field for Title */}
         <InputField
@@ -58,7 +58,6 @@ const AddBook = () => {
           register={register}
         />
 
-        {/* Reusable Textarea for Description */}
         <InputField
           label="Description"
           name="description"
@@ -68,7 +67,6 @@ const AddBook = () => {
 
         />
 
-        {/* Reusable Select Field for Category */}
         <SelectField
           label="Category"
           name="category"
@@ -79,12 +77,10 @@ const AddBook = () => {
             { value: 'fiction', label: 'Fiction' },
             { value: 'horror', label: 'Horror' },
             { value: 'adventure', label: 'Adventure' },
-            // Add more options as needed
           ]}
           register={register}
         />
 
-        {/* Trending Checkbox */}
         <div className="mb-4">
           <label className="inline-flex items-center">
             <input

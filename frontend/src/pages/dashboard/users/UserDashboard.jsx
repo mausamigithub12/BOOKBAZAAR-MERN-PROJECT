@@ -79,7 +79,6 @@ const UserDashboard = () => {
         </nav>
       </div>
 
-      {/* Main Content */}
       <div className="flex-1 p-8">
         <Outlet /> {/* This will render the nested routes */}
       </div>
